@@ -1,0 +1,25 @@
+{
+  "applications": {
+    "gecko": {
+      "id": "playbackSpeed@waldemar.b",
+      "strict_min_version": "45.0a1"
+    }
+  },
+  "permissions": [
+		"tabs",
+		"activeTab"
+	],
+  "browser_action": {
+    "default_icon": "icons/icon.svg",
+    "default_title": "__MSG_extensionName__",
+    "default_popup": "popup.html"
+  },
+   "description": "__MSG_extensionDescription__",
+   "manifest_version": 2,
+   "name": "__MSG_extensionName__",
+   "default_locale": "en",
+   "version": "1.0",
+	"icons": {
+      "48": "icons/icon.svg"
+   }
+}

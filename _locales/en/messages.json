@@ -1,0 +1,14 @@
+{
+  "extensionName": {
+    "message": "Playback speed"
+  },
+  "extensionDescription": {
+    "message": "Control the speed of video playback."
+  },
+  "newTab": {
+    "message": "Open video in new tab"
+  },
+  "noVideo": {
+    "message": "There are no videos on this page"
+  }
+}

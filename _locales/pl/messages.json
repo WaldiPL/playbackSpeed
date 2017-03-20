@@ -1,0 +1,14 @@
+{
+  "extensionName": {
+    "message": "Szybkość odtwarzania"
+  },
+  "extensionDescription": {
+    "message": "Steruj szybkością odtwarzania filmów."
+  },
+  "newTab": {
+    "message": "Otwórz wideo w nowej karcie"
+  },
+  "noVideo": {
+    "message": "Brak filmów na tej stronie"
+  }
+}
