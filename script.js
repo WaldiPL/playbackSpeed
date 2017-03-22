@@ -2,6 +2,7 @@
 	document.getElementById("newTab").innerHTML=browser.i18n.getMessage("newTab");
 	document.getElementById("noVideo").innerHTML=browser.i18n.getMessage("noVideo");
 	document.getElementById("speed1").addEventListener("click",()=>{control(100);});
+	document.getElementById("speed15").addEventListener("click",()=>{control(150);});
 	document.getElementById("speed2").addEventListener("click",()=>{control(200);});
 	document.getElementById("newTab").addEventListener("click",()=>{control("open");});
 	document.getElementById("range").addEventListener("change",(e)=>{control(e.target.value);});
