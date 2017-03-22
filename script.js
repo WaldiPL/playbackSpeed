@@ -4,20 +4,23 @@
 	document.getElementById("speed1").addEventListener("click",()=>{control(100);});
 	document.getElementById("speed2").addEventListener("click",()=>{control(200);});
 	document.getElementById("newTab").addEventListener("click",()=>{control("open");});
-	document.getElementById("range").addEventListener("change",(e)=>{control(e.target.value,true);});
+	document.getElementById("range").addEventListener("change",(e)=>{control(e.target.value);});
 	browser.tabs.executeScript(null, {
-    	file: "/insert.js"
+		allFrames: true,
+    	file: "/isvideo.js"
 	});
 })();
 
-function control(e,r=false){
+function control(e){
+	browser.tabs.executeScript(null,{
+		allFrames: true,
+    	file: "/insert.js"
+	});
+	if(e!="open")document.getElementById("playback-rate").innerHTML=parseInt(e)/100;
+	if(typeof(e)==="number")document.getElementById("range").value=parseInt(e);
 	browser.tabs.query({active: true, currentWindow: true},tabs=>{
-    	browser.tabs.sendMessage(tabs[0].id,{control:e,range:r});
+    	browser.tabs.sendMessage(tabs[0].id,{control:e});
   	});
-	if(r){
-		let rv=parseInt(document.getElementById("range").value)/100;
-		document.getElementById("playback-rate").innerHTML=rv;
-	}
 }
 
 browser.runtime.onMessage.addListener(mes);

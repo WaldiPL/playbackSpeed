@@ -1,16 +1,12 @@
-(function(){
-	let videos=document.getElementsByTagName("video");
-	if(videos)browser.runtime.sendMessage({"isVideo":true,"rate":videos[0].playbackRate}); 
-})();
-
 browser.runtime.onMessage.addListener(mes);
-function mes(m) {
-  if(m.control)control(m.control,m.range);
-  browser.runtime.onMessage.removeListener(mes);
+function mes(m){
+	if(m.control)control(m.control);
+	browser.runtime.onMessage.removeListener(mes);
 }
 
-function control(e,range) {
+function control(e) {
 	let videos=document.getElementsByTagName("video");
+	if(!videos[0])return;
 	let rate=videos[0].playbackRate;
 	let len=videos.length;
 	if(e==="open"){
@@ -23,5 +19,4 @@ function control(e,range) {
 			videos[i].playbackRate = speed/100;		
 		}
 	}
-	if(!range)browser.runtime.sendMessage({"rate":rate}); 
 }
