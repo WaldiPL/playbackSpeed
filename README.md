@@ -12,4 +12,4 @@ Control the speed of video playback.
 - Active Tab
 
 ## Download
-https://addons.mozilla.org/pl/firefox/addon/playback-speed/
+https://addons.mozilla.org/en-us/firefox/addon/playback-speed/
