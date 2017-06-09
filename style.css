@@ -38,7 +38,7 @@ button:hover:active{
 
 .flexrow{
 	display: flex;
-	flex-direction: row;	  
+	flex-direction: row;
 }
 
 .combo{
@@ -46,9 +46,9 @@ button:hover:active{
 }
 
 .combo > button{
-    margin: 0 -1px;
-    padding: 0;
-    width: 100px;
+	margin: 0 -1px;
+	padding: 0;
+	width: 100px;
 	height: 28px;
 }
 
@@ -64,4 +64,13 @@ button:hover:active{
 
 #noVideo{
 	text-align:center;
+}
+
+#error{
+	background:#ff9184;
+	border:1px solid #d92015;
+	text-align:center;
+	padding:4px;
+	margin: 0 -1px;
+	width:calc(100% - 8px);
 }

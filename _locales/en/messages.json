@@ -10,5 +10,8 @@
   },
   "noVideo": {
     "message": "There are no videos on this page"
+  },
+  "error": {
+    "message": "This video can not be opened"
   }
 }

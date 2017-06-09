@@ -1,27 +1,30 @@
 (function(){
-	document.getElementById("newTab").innerHTML=browser.i18n.getMessage("newTab");
-	document.getElementById("noVideo").innerHTML=browser.i18n.getMessage("noVideo");
-	document.getElementById("speed1").addEventListener("click",()=>{control(100);});
-	document.getElementById("speed15").addEventListener("click",()=>{control(150);});
-	document.getElementById("speed2").addEventListener("click",()=>{control(200);});
+	document.getElementById("newTab").textContent=browser.i18n.getMessage("newTab");
+	document.getElementById("noVideo").textContent=browser.i18n.getMessage("noVideo");
+	document.getElementById("error").textContent=browser.i18n.getMessage("error");
+	document.getElementById("speed1").addEventListener("click",()=>{control(1);});
+	document.getElementById("speed15").addEventListener("click",()=>{control(1.5);});
+	document.getElementById("speed2").addEventListener("click",()=>{control(2);});
 	document.getElementById("newTab").addEventListener("click",()=>{control("open");});
 	document.getElementById("range").addEventListener("change",(e)=>{control(e.target.value);});
-	browser.tabs.executeScript(null, {
+	browser.tabs.executeScript(null,{
 		allFrames: true,
-    	file: "/isvideo.js"
-	});
+		file: "/isvideo.js",
+		runAt: "document_end"
+	}).then(()=>{},e=>{console.log(e);});
 })();
 
 function control(e){
 	browser.tabs.executeScript(null,{
 		allFrames: true,
-    	file: "/insert.js"
+		file: "/insert.js",
+		runAt: "document_end"
 	});
-	if(e!="open")document.getElementById("playback-rate").innerHTML=parseInt(e)/100;
-	if(typeof(e)==="number")document.getElementById("range").value=parseInt(e);
+	if(e!="open")document.getElementById("playback-rate").textContent=e;
+	if(typeof(e)==="number")document.getElementById("range").value=e;
 	browser.tabs.query({active: true, currentWindow: true},tabs=>{
-    	browser.tabs.sendMessage(tabs[0].id,{control:e});
-  	});
+		browser.tabs.sendMessage(tabs[0].id,{control:e});
+	});
 }
 
 browser.runtime.onMessage.addListener(mes);
@@ -31,10 +34,10 @@ function mes(m){
 		document.getElementById("noVideo").setAttribute("hidden","true");
 	}
 	if(m.rate){
-		document.getElementById("range").value=m.rate*100;
-		document.getElementById("playback-rate").innerHTML=m.rate;
+		document.getElementById("range").value=m.rate;
+		document.getElementById("playback-rate").textContent=m.rate;
 	}
 	if(m.openTab){
-		if(m.url)browser.tabs.create({active:false,url:m.url});
+		if(m.url)browser.tabs.create({active:false,url:m.url}).then(()=>{},e=>{console.log(e);document.getElementById("error").removeAttribute("hidden");});
 	}
 }
