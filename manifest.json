@@ -11,6 +11,11 @@
 	],
   "browser_action": {
     "default_icon": "icons/icon.svg",
+	"theme_icons": [{
+          "light": "icons/icon_light.svg",
+          "dark": "icons/icon.svg",
+          "size": 19
+        }],
     "default_title": "__MSG_extensionName__",
     "default_popup": "popup.html"
   },
@@ -18,7 +23,7 @@
    "manifest_version": 2,
    "name": "__MSG_extensionName__",
    "default_locale": "en",
-   "version": "1.2",
+   "version": "1.2.1",
 	"icons": {
       "48": "icons/icon.svg"
    }
