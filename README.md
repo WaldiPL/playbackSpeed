@@ -1,4 +1,4 @@
-# Playback Speed
+# Playback Speed ![](https://img.shields.io/badge/AMO-v.1.2.1-blue.svg)
 Control the speed of video playback.
 
 ## Screenshot
