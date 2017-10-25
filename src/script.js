@@ -6,7 +6,7 @@
 	document.getElementById("speed15").addEventListener("click",()=>{control(1.5);});
 	document.getElementById("speed2").addEventListener("click",()=>{control(2);});
 	document.getElementById("newTab").addEventListener("click",()=>{control("open");});
-	document.getElementById("range").addEventListener("change",(e)=>{control(e.target.value);});
+	document.getElementById("range").addEventListener("change",e=>{control(e.target.value);});
 	browser.tabs.executeScript(null,{
 		allFrames: true,
 		file: "/isvideo.js",
