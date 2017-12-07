@@ -23,8 +23,28 @@
    "manifest_version": 2,
    "name": "__MSG_extensionName__",
    "default_locale": "en",
-   "version": "1.2.2",
+   "version": "1.2.5",
 	"icons": {
       "48": "icons/icon.svg"
+   },
+   "background": {
+     "scripts": ["bg.js"]
+   },
+   "commands": {
+    "ratePlus": {
+     "suggested_key": {
+      "default": "Alt+Shift+Right"
+     }
+    },
+    "rateMinus": {
+     "suggested_key": {
+      "default": "Alt+Shift+Left"
+     }
+    },
+	"rateDefault": {
+     "suggested_key": {
+      "default": "Alt+Shift+Up"
+     }
+    }
    }
 }

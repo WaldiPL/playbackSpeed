@@ -20,8 +20,6 @@ function control(e){
 		file: "/insert.js",
 		runAt: "document_end"
 	});
-	if(e!="open")document.getElementById("playback-rate").textContent=e;
-	if(typeof(e)==="number")document.getElementById("range").value=e;
 	browser.tabs.query({active: true, currentWindow: true},tabs=>{
 		browser.tabs.sendMessage(tabs[0].id,{control:e});
 	});
