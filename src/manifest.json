@@ -23,7 +23,7 @@
    "manifest_version": 2,
    "name": "__MSG_extensionName__",
    "default_locale": "en",
-   "version": "1.2.5",
+   "version": "1.2.6",
 	"icons": {
       "48": "icons/icon.svg"
    },

@@ -1,5 +1,5 @@
 body{
-	background: transparent;
+	background: #fff;
 	box-sizing: border-box;
 	color: #222426;
 	cursor: default;
@@ -62,7 +62,6 @@ button:hover:active{
 	min-width:21px;
 	max-width:21px;
 	overflow:hidden;
-	background:#fff;
 }
 
 #noVideo{
