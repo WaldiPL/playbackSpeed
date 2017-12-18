@@ -32,8 +32,9 @@ function mes(m){
 		document.getElementById("noVideo").setAttribute("hidden","true");
 	}
 	if(m.rate){
-		document.getElementById("range").value=m.rate;
-		document.getElementById("playback-rate").textContent=m.rate;
+		let rate=Math.round(m.rate*100)/100;
+		document.getElementById("range").value=rate;
+		document.getElementById("playback-rate").textContent=rate;
 	}
 	if(m.openTab){
 		if(m.url)browser.tabs.create({active:false,url:m.url}).then(()=>{},e=>{console.log(e);document.getElementById("error").removeAttribute("hidden");});
