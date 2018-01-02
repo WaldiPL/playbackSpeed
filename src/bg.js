@@ -18,3 +18,10 @@ function control(e){
 		browser.tabs.sendMessage(tabs[0].id,{control:e});
 	});
 }
+
+browser.runtime.onMessage.addListener(mes);
+function mes(m,s){
+	if(m.rate){
+		browser.browserAction.setBadgeText({text:m.rate+"",tabId:s.tab.id});
+	}
+}
