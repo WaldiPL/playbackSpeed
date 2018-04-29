@@ -59,8 +59,8 @@ button:hover:active{
 }
 
 #playback-rate{
-	min-width:21px;
-	max-width:21px;
+	min-width:16px;
+	max-width:16px;
 	overflow:hidden;
 }
 
