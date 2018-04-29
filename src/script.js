@@ -3,6 +3,7 @@
 	document.getElementById("noVideo").textContent=browser.i18n.getMessage("noVideo");
 	document.getElementById("error").textContent=browser.i18n.getMessage("error");
 	document.getElementById("speed1").addEventListener("click",()=>{control(1);});
+	document.getElementById("speed125").addEventListener("click",()=>{control(1.25);});
 	document.getElementById("speed15").addEventListener("click",()=>{control(1.5);});
 	document.getElementById("speed2").addEventListener("click",()=>{control(2);});
 	document.getElementById("newTab").addEventListener("click",()=>{control("open");});
