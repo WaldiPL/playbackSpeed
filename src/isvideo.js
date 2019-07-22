@@ -1,3 +1,5 @@
+"use strict";
+
 (function(){
 	let videos=document.getElementsByTagName("video"),
 		audios=document.getElementsByTagName("audio");

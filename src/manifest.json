@@ -2,12 +2,13 @@
   "applications": {
     "gecko": {
       "id": "playbackSpeed@waldemar.b",
-      "strict_min_version": "45.0a1"
+      "strict_min_version": "57.0a1"
     }
   },
   "permissions": [
 		"tabs",
-		"activeTab"
+		"activeTab",
+		"storage"
 	],
   "browser_action": {
     "default_icon": "icons/icon.svg",
@@ -23,28 +24,35 @@
    "manifest_version": 2,
    "name": "__MSG_extensionName__",
    "default_locale": "en",
-   "version": "1.3.0",
+   "version": "1.4.0",
 	"icons": {
       "48": "icons/icon.svg"
    },
    "background": {
      "scripts": ["bg.js"]
    },
+   "options_ui": {
+      "page": "options.html",
+	  "browser_style":false
+   },
    "commands": {
     "ratePlus": {
      "suggested_key": {
       "default": "Alt+Shift+Right"
-     }
+     },
+	 "description": "__MSG_increaseSpeed__"
     },
     "rateMinus": {
      "suggested_key": {
       "default": "Alt+Shift+Left"
-     }
+     },
+	 "description": "__MSG_decreaseSpeed__"
     },
 	"rateDefault": {
      "suggested_key": {
       "default": "Alt+Shift+Up"
-     }
+     },
+	 "description": "__MSG_resetSpeed__"
     }
    }
 }

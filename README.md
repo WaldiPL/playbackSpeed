@@ -5,11 +5,12 @@ Control the speed of video playback.
 ![](screenshots/1.png)
 
 ## Requirements
-- Firefox 45+
+- Firefox 57+
 
 ## Permissions
 - Tabs
 - Active Tab
+- Storage
 
 ## Download
-https://addons.mozilla.org/en-us/firefox/addon/playback-speed/
+https://addons.mozilla.org/firefox/addon/playback-speed/

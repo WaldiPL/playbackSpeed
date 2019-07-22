@@ -13,5 +13,66 @@
   },
   "error": {
     "message": "This video can not be opened"
+  },
+  
+  "options": {
+    "message": "Options"
+  },
+  "main": {
+    "message": "Main"
+  },
+  "stepButtons": {
+    "message": "The value of the +/- buttons step"
+  },
+  "theme": {
+    "message": "Theme"
+  },
+  "light": {
+    "message": "Light"
+  },
+  "dark": {
+    "message": "Dark"
+  },
+  "slider": {
+    "message": "Slider"
+  },
+  "minSpeed": {
+    "message": "Minimum speed"
+  },
+  "maxSpeed": {
+    "message": "Maximum speed"
+  },
+  "stepSlider": {
+    "message": "The value of step"
+  },
+  "customizeTitle": {
+    "message": "Drag elements to customize the pop-up window."
+  },
+  "deleteRow": {
+    "message": "Delete row"
+  },
+  "addRow": {
+    "message": "Add another row"
+  },
+  "increaseSpeed": {
+    "message": "Increase speed"
+  },
+  "decreaseSpeed": {
+    "message": "Decrease speed"
+  },
+  "resetSpeed": {
+    "message": "Reset speed"
+  },
+  "currentSpeed": {
+    "message": "Current speed"
+  },
+  "playPause": {
+    "message": "Play / Pause"
+  },
+  "customize": {
+    "message": "Customize…"
+  },
+  "addButton": {
+    "message": "Add a button with a value…"
   }
 }

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+	<link rel="stylesheet" href="options.css">
+	<link rel="stylesheet" href="style.css">
+  </head>
+<body class="opacity">
+	<h2 id="title"></h2>	
+	<div class="card">
+		<form id="optionsForm">
+			<h3 id="main"></h3>
+			<div class="optionsTab">
+			
+				<label id="stepButtonLabel" for="stepButton"></label>
+				<input type="number" id="stepButton" step=".01">
+				
+				<label id="labelTheme"></label>
+				<select id="theme">
+					<option value="light"></option>
+					<option value="dark"></option>
+				</select>
+			</div>
+			<h3 id="sliderTitle"></h3>
+			<div class="optionsTab">
+				<label id="minRangeLabel" for="minRange"></label><input type="number" id="minRange" step=".01">
+				<label id="maxRangeLabel" for="maxRange"></label><input type="number" id="maxRange" step=".01">
+				<label id="stepRangeLabel" for="stepRange"></label><input type="number" id="stepRange" step=".01">
+			</div>
+		</form>
+	</div>
+	<div id="customization" class="card">
+		<h3 id="header"></h3>
+		<div id="leftSide">
+			<div id="popupPreview"></div>
+			<button id="addRow"></button>
+		</div>
+		<div id="rightSide">
+			<button id="addButton"></button><input id="buttonValue" type="number" step="0.01" value="1">
+			<div id="palette"></div>
+		</div>
+	</div>
+	<script src="jquery/jquery-3.3.1.slim.min.js"></script>
+	<script src="jquery/jquery-ui-1.12.1.min.js"></script>
+	<script src="options.js"></script>
+</body>
+</html>

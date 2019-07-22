@@ -1,52 +1,45 @@
-browser.runtime.onMessage.addListener(mes);
-function mes(m){
-	if(m.control)control(m.control);
-	browser.runtime.onMessage.removeListener(mes);
-}
+"use strict";
 
-function control(e) {
+function control(e,step){
 	let videos=document.getElementsByTagName("video"),
-		audios=document.getElementsByTagName("audio");
-	if(!videos[0]&&!audios[0])return;
-	let rate=videos[0]?videos[0].playbackRate:audios[0].playbackRate,
-		lenV=videos.length,
-		lenA=audios.length;
+		audios=document.getElementsByTagName("audio"),
+		media=[...videos].concat([...audios]);
+	if(!media[0])return;
+	let rate=media[0].playbackRate,
+		paused=media[0].paused,
+		len=media.length;
 	switch(e){
 		case "open":
-			for(let i=0;i<lenV;i++){
-				browser.runtime.sendMessage({"openTab":true,"url":videos[i].currentSrc});
-			}
-			for(let i=0;i<lenA;i++){
-				browser.runtime.sendMessage({"openTab":true,"url":audios[i].currentSrc});
+			for(let i=0;i<len;i++){
+				browser.runtime.sendMessage({"openTab":true,"url":media[i].currentSrc});
 			}
 			break;
 		case "plus":
-			let prate=(rate>3.75)?4:rate+0.25;
-			for(let i=0;i<lenV;i++){
-				videos[i].playbackRate=prate;
+			let prate=rate+step;
+			rate=Math.round(prate*100)/100;
+			for(let i=0;i<len;i++){
+				media[i].playbackRate=rate;
 			}
-			for(let i=0;i<lenA;i++){
-				audios[i].playbackRate=prate;
-			}
-			browser.runtime.sendMessage({"rate":prate});
+			browser.runtime.sendMessage({"rate":rate});
 			break;
 		case "minus":
-			let mrate=(rate<0.5)?0.25:rate-0.25;
-			for(let i=0;i<lenV;i++){
-				videos[i].playbackRate=mrate;
+			let mrate=(rate-step<0)?0:rate-step;
+			rate=Math.round(mrate*100)/100;
+			for(let i=0;i<len;i++){
+				media[i].playbackRate=rate;
 			}
-			for(let i=0;i<lenA;i++){
-				audios[i].playbackRate=mrate;
+			browser.runtime.sendMessage({"rate":rate});
+			break;
+		case "playpause":
+			for(let i=0;i<len;i++){
+				paused?media[i].play():media[i].pause();
 			}
-			browser.runtime.sendMessage({"rate":mrate});
 			break;
 		default:
-			for(let i=0;i<lenV;i++){
-				videos[i].playbackRate=e;
+			for(let i=0;i<len;i++){
+				media[i].playbackRate=e;
 			}
-			for(let i=0;i<lenA;i++){
-				audios[i].playbackRate=e;
-			}
-			browser.runtime.sendMessage({"rate":e});
+			rate=Math.round(e*100)/100;
+			browser.runtime.sendMessage({"rate":rate});
 	}
 }

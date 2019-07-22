@@ -13,5 +13,66 @@
   },
   "error": {
     "message": "Nie można otworzyć tego filmu"
+  },
+  
+  "options": {
+    "message": "Opcje"
+  },
+  "main": {
+    "message": "Ogólne"
+  },
+  "stepButtons": {
+    "message": "Wartość kroku przycisków -/+"
+  },
+  "theme": {
+    "message": "Motyw"
+  },
+  "light": {
+    "message": "Jasny"
+  },
+  "dark": {
+    "message": "Ciemny"
+  },
+  "slider": {
+    "message": "Suwak"
+  },
+  "minSpeed": {
+    "message": "Minimalna szybkość"
+  },
+  "maxSpeed": {
+    "message": "Maksymalna szybkość"
+  },
+  "stepSlider": {
+    "message": "Wartość kroku"
+  },
+  "customizeTitle": {
+    "message": "Przeciągaj elementy, aby dostosować wyskakujące okienko."
+  },
+  "deleteRow": {
+    "message": "Usuń wiersz"
+  },
+  "addRow": {
+    "message": "Dodaj kolejny wiersz"
+  },
+  "increaseSpeed": {
+    "message": "Zwiększ szybkość"
+  },
+  "decreaseSpeed": {
+    "message": "Zmniejsz szybkość"
+  },
+  "resetSpeed": {
+    "message": "Resetuj szybkość"
+  },
+  "currentSpeed": {
+    "message": "Aktualna szybkość"
+  },
+  "playPause": {
+    "message": "Odtwarzaj / Wstrzymaj"
+  },
+  "customize": {
+    "message": "Dostosuj…"
+  },
+  "addButton": {
+    "message": "Dodaj przycisk o wartości…"
   }
 }

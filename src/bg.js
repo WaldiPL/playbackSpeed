@@ -1,10 +1,34 @@
+"use strict";
+
+browser.runtime.onInstalled.addListener(handleInstalled);
+function handleInstalled(details){
+	if(details.reason==="install"||details.reason==="update"){
+		browser.storage.local.get().then(db=>{
+			if(db.minRate===undefined){
+				browser.storage.local.set({
+					theme:"light",
+					minRange:0.3,
+					maxRange:4,
+					stepRange:0.1,
+					stepButton:0.25,
+					popup:[["range","current"],["minus","plus"],[1,1.25,1.5,1.75,2],["playpause","open"],["customize"]]
+				});
+			}
+		});
+	}
+}
+
 browser.commands.onCommand.addListener(command=>{
-	if(command==="ratePlus"){
-		control("plus");
-	}if(command==="rateMinus"){
-		control("minus");
-	}if(command==="rateDefault"){
-		control(1);
+	switch(command){
+		case "ratePlus":
+			control("plus");
+			break;
+		case "rateMinus":
+			control("minus");
+			break;
+		case "rateDefault":
+			control(1);
+			break;
 	}
 });
 
@@ -13,9 +37,14 @@ function control(e){
 		allFrames: true,
 		file: "/insert.js",
 		runAt: "document_end"
-	});
-	browser.tabs.query({active: true, currentWindow: true},tabs=>{
-		browser.tabs.sendMessage(tabs[0].id,{control:e});
+	}).then(()=>{
+		browser.storage.local.get("stepButton").then(db=>{
+			browser.tabs.executeScript(null,{
+				allFrames: true,
+				code: `control("${e}",${db.stepButton});`,
+				runAt: "document_end"
+			});
+		});
 	});
 }
 
