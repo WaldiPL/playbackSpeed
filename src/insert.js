@@ -35,6 +35,16 @@ function control(e,step){
 				paused?media[i].play():media[i].pause();
 			}
 			break;
+		case "rewind":
+			for(let i=0;i<len;i++){
+				media[i].currentTime=media[i].currentTime-step;
+			}
+			break;
+		case "fastforward":
+			for(let i=0;i<len;i++){
+				media[i].currentTime=media[i].currentTime+step;
+			}
+			break;
 		default:
 			for(let i=0;i<len;i++){
 				media[i].playbackRate=e;

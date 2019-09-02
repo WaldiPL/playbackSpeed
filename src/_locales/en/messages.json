@@ -22,7 +22,10 @@
     "message": "Main"
   },
   "stepButtons": {
-    "message": "The value of the +/- buttons step"
+    "message": "Step value of the -/+ buttons"
+  },
+  "stepFast": {
+    "message": "Step value of the 'Rewind / Fast forward' buttons [s]"
   },
   "theme": {
     "message": "Theme"
@@ -74,5 +77,11 @@
   },
   "addButton": {
     "message": "Add a button with a value…"
+  },
+  "rewind": {
+    "message": "Rewind"
+  },
+  "fastforward": {
+    "message": "Fast forward"
   }
 }

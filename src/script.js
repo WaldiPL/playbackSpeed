@@ -20,10 +20,15 @@ function control(e,step){
 	});
 }
 
+let generated=false;
+
 browser.runtime.onMessage.addListener(mes);
 function mes(m){
 	if(m.isVideo){
-		generatePopup(Math.round(m.rate*100)/100);
+		if(!generated){
+			generated=true;
+			generatePopup(Math.round(m.rate*100)/100);
+		}
 		browser.tabs.executeScript(null,{
 			allFrames: true,
 			file: "/insert.js",
@@ -86,7 +91,8 @@ function generatePopup(rate){
 						item.max=db.maxRange;
 						item.step=db.stepRange;
 						item.value=rate;
-						item.addEventListener("change",e=>{control(e.target.value);});
+						item.addEventListener("input",e=>{control(e.target.value);});
+						item.addEventListener("mouseover",e=>{e.target.focus();});
 						break;
 					case "current":
 						item=document.createElement("span");
@@ -105,6 +111,18 @@ function generatePopup(rate){
 						item.id=e;
 						item.textContent=i18n("customize");
 						item.addEventListener("click",()=>{browser.runtime.openOptionsPage();});
+						break;
+					case "rewind":
+						item=document.createElement("button");
+						item.id=e;
+						item.title=i18n("rewind")+` (-${db.stepFast} s)`;
+						item.addEventListener("click",()=>{control("rewind",db.stepFast);});
+						break;
+					case "fastforward":
+						item=document.createElement("button");
+						item.id=e;
+						item.title=i18n("fastforward")+` (+${db.stepFast} s)`;;
+						item.addEventListener("click",()=>{control("fastforward",db.stepFast);});
 						break;
 					default:
 						item=document.createElement("button");

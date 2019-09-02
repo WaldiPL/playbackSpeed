@@ -56,7 +56,7 @@ h3{
 
 .optionsTab{
   display:grid;
-  grid-template-columns: 200px auto;
+  grid-template-columns: 290px auto;
   grid-row-gap: 5px;
 }
 

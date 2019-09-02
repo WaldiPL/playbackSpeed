@@ -9,17 +9,19 @@
 })();
 
 function saveOptions(){
-	let [minRange,maxRange,stepRange,stepButton,theme]=[
+	let [minRange,maxRange,stepRange,stepButton,stepFast,theme]=[
 		num(document.getElementById("minRange").value),
 		num(document.getElementById("maxRange").value),
 		num(document.getElementById("stepRange").value),
 		num(document.getElementById("stepButton").value),
+		num(document.getElementById("stepFast").value),
 		document.getElementById("theme").value
 	];
 	if(!minRange)min=0.3;
 	if(!maxRange)max=4;
 	if(!stepRange)stepRange=0.1;
 	if(!stepButton)stepButton=0.25;
+	if(!stepFast)stepFast=5;
 	if(maxRange<minRange)maxRange=minRange+stepRange;
 	if(stepRange>maxRange)stepRange=maxRange-minRange;
 	browser.storage.local.set({
@@ -27,6 +29,7 @@ function saveOptions(){
 		maxRange,
 		stepRange,
 		stepButton,
+		stepFast,
 		theme
 	});
 }
@@ -40,6 +43,7 @@ function restoreOptions(){
 		document.getElementById("maxRange").value=db.maxRange;
 		document.getElementById("stepRange").value=db.stepRange;
 		document.getElementById("stepButton").value=db.stepButton;
+		document.getElementById("stepFast").value=db.stepFast;
 		document.getElementById("theme").value=db.theme;
 		
 		db.popup.forEach(row=>{
@@ -94,6 +98,16 @@ function restoreOptions(){
 						item.id=e;
 						item.textContent=i18n("customize");
 						break;
+					case "rewind":
+						item=document.createElement("button");
+						item.id=e;
+						item.title=i18n("rewind");
+						break;
+					case "fastforward":
+						item=document.createElement("button");
+						item.id=e;
+						item.title=i18n("fastforward");
+						break;
 					default:
 						item=document.createElement("button");
 						item.textContent=e;
@@ -127,7 +141,7 @@ function restoreOptions(){
 			});
 		});
 	}).then(()=>{
-		let itemsId=["plus","minus","open","range","current","playpause","customize"];
+		let itemsId=["plus","minus","open","range","current","playpause","customize","rewind","fastforward"];
 		itemsId.forEach(id=>{
 			if(!document.getElementById(id))restoreItem(id);
 		});
@@ -177,6 +191,8 @@ function deleteRow(e){
 	if(items.current){restoreItem("current");}
 	if(items.playpause){restoreItem("playpause");}
 	if(items.customize){restoreItem("customize");}
+	if(items.rewind){restoreItem("rewind");}
+	if(items.fastforward){restoreItem("fastforward");}
 	e.target.parentElement.remove();
 	savePopup();
 }
@@ -233,6 +249,16 @@ function restoreItem(id){
 			item.id=id;
 			item.textContent=i18n("Customize");
 			break;
+		case "rewind":
+			item=document.createElement("button");
+			item.id=id;
+			item.title=i18n("rewind");
+			break;
+		case "fastforward":
+			item=document.createElement("button");
+			item.id=id;
+			item.title=i18n("fastforward");
+			break;
 	}
 	palette.appendChild(item);	
 }
@@ -260,6 +286,7 @@ function translate(){
 	document.getElementById("title").textContent=i18n("options");
 	document.getElementById("main").textContent=i18n("main");
 	document.getElementById("stepButtonLabel").textContent=i18n("stepButtons");
+	document.getElementById("stepFastLabel").textContent=i18n("stepFast");
 	document.getElementById("labelTheme").textContent=i18n("theme");
 	let themeSelect=document.getElementById("theme").options;
 		themeSelect[0].text=i18n("light");

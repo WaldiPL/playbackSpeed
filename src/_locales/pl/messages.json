@@ -24,6 +24,9 @@
   "stepButtons": {
     "message": "Wartość kroku przycisków -/+"
   },
+  "stepFast": {
+    "message": "Wartość kroku przycisków 'Do tyłu / Do przodu' [s]"
+  },
   "theme": {
     "message": "Motyw"
   },
@@ -74,5 +77,11 @@
   },
   "addButton": {
     "message": "Dodaj przycisk o wartości…"
+  },
+  "rewind": {
+    "message": "Do tyłu"
+  },
+  "fastforward": {
+    "message": "Do przodu"
   }
 }

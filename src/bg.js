@@ -4,7 +4,7 @@ browser.runtime.onInstalled.addListener(handleInstalled);
 function handleInstalled(details){
 	if(details.reason==="install"||details.reason==="update"){
 		browser.storage.local.get().then(db=>{
-			if(db.minRate===undefined){
+			if(db.theme===undefined){
 				browser.storage.local.set({
 					theme:"light",
 					minRange:0.3,
@@ -29,6 +29,12 @@ browser.commands.onCommand.addListener(command=>{
 		case "rateDefault":
 			control(1);
 			break;
+		case "rewind":
+			control("rewind");
+			break;
+		case "fastforward":
+			control("fastforward");
+			break;
 	}
 });
 
@@ -38,10 +44,11 @@ function control(e){
 		file: "/insert.js",
 		runAt: "document_end"
 	}).then(()=>{
-		browser.storage.local.get("stepButton").then(db=>{
+		browser.storage.local.get(["stepButton","stepFast"]).then(db=>{
+			let step=(e==="rewind"||e==="fastforward")?db.stepFast:db.stepButton;
 			browser.tabs.executeScript(null,{
 				allFrames: true,
-				code: `control("${e}",${db.stepButton});`,
+				code: `control("${e}",${step});`,
 				runAt: "document_end"
 			});
 		});

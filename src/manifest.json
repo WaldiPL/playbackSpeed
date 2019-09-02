@@ -24,7 +24,7 @@
    "manifest_version": 2,
    "name": "__MSG_extensionName__",
    "default_locale": "en",
-   "version": "1.4.0",
+   "version": "1.4.1",
 	"icons": {
       "48": "icons/icon.svg"
    },
@@ -53,6 +53,18 @@
       "default": "Alt+Shift+Up"
      },
 	 "description": "__MSG_resetSpeed__"
+    },
+	"rewind": {
+     "suggested_key": {
+      "default": "Ctrl+Shift+Left"
+     },
+	 "description": "__MSG_rewind__"
+    },
+	"fastforward": {
+     "suggested_key": {
+      "default": "Ctrl+Shift+Right"
+     },
+	 "description": "__MSG_fastforward__"
     }
    }
 }
