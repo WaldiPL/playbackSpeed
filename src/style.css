@@ -9,6 +9,8 @@
 	--icon-playpause:url("icons/playpause.svg#l");
 	--icon-fastforward:url("icons/fastforward.svg#l");
 	--icon-rewind:url("icons/rewind.svg#l");
+	--icon-loop:url("icons/loop.svg#l");
+	--icon-mute:url("icons/mute.svg#l");
 }
 
 .dark:root{
@@ -22,6 +24,8 @@
 	--icon-playpause:url("icons/playpause.svg#d");
 	--icon-fastforward:url("icons/fastforward.svg#d");
 	--icon-rewind:url("icons/rewind.svg#d");
+	--icon-loop:url("icons/loop.svg#d");
+	--icon-mute:url("icons/mute.svg#d");
 }
 
 
@@ -141,6 +145,20 @@ button:hover:active{
 
 #fastforward{
 	background-image:var(--icon-fastforward);
+	background-repeat:no-repeat;
+	background-position:center;
+	vertical-align:bottom;
+}
+
+#loop{
+	background-image:var(--icon-loop);
+	background-repeat:no-repeat;
+	background-position:center;
+	vertical-align:bottom;
+}
+
+#mute{
+	background-image:var(--icon-mute);
 	background-repeat:no-repeat;
 	background-position:center;
 	vertical-align:bottom;

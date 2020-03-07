@@ -7,6 +7,7 @@
 	});
 	browser.tabs.executeScript(null,{
 		allFrames: true,
+		matchAboutBlank: true,
 		file: "/isvideo.js",
 		runAt: "document_end"
 	}).then(()=>{},e=>{console.error(e);});
@@ -15,6 +16,7 @@
 function control(e,step){
 	browser.tabs.executeScript(null,{
 		allFrames: true,
+		matchAboutBlank: true,
 		code: `control("${e}",${step});`,
 		runAt: "document_end"
 	});
@@ -23,14 +25,15 @@ function control(e,step){
 let generated=false;
 
 browser.runtime.onMessage.addListener(mes);
-function mes(m){
+function mes(m,s){
 	if(m.isVideo){
 		if(!generated){
 			generated=true;
 			generatePopup(Math.round(m.rate*100)/100);
 		}
 		browser.tabs.executeScript(null,{
-			allFrames: true,
+			frameId:s.frameId,
+			matchAboutBlank: true,
 			file: "/insert.js",
 			runAt: "document_end"
 		});
@@ -68,14 +71,14 @@ function generatePopup(rate){
 						item.id=e;
 						item.textContent="+";
 						item.title=i18n("increaseSpeed");
-						item.addEventListener("click",()=>{control("plus",db.stepButton);});
+						item.addEventListener("click",()=>{control("ratePlus",db.stepButton);});
 						break;
 					case "minus":
 						item=document.createElement("button");
 						item.id=e;
 						item.textContent="-";
 						item.title=i18n("decreaseSpeed");
-						item.addEventListener("click",()=>{control("minus",db.stepButton);});
+						item.addEventListener("click",()=>{control("rateMinus",db.stepButton);});
 						break;
 					case "open":
 						item=document.createElement("button");
@@ -100,12 +103,6 @@ function generatePopup(rate){
 						item.textContent=rate;
 						item.title=i18n("currentSpeed");
 						break;
-					case "playpause":
-						item=document.createElement("button");
-						item.id=e;
-						item.title=i18n("playPause");
-						item.addEventListener("click",()=>{control("playpause");});
-						break;
 					case "customize":
 						item=document.createElement("button");
 						item.id=e;
@@ -124,11 +121,18 @@ function generatePopup(rate){
 						item.title=i18n("fastforward")+` (+${db.stepFast} s)`;;
 						item.addEventListener("click",()=>{control("fastforward",db.stepFast);});
 						break;
+					case "playpause":
+					case "loop":
+					case "mute":
+						item=document.createElement("button");
+						item.id=e;
+						item.title=i18n(e);
+						item.addEventListener("click",()=>{control(e);});
+						break;
 					default:
 						item=document.createElement("button");
 						item.textContent=e;
 						item.addEventListener("click",()=>{control(e);});
-						break;
 				}
 				rowElm.appendChild(item);
 				items=true;

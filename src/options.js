@@ -2,6 +2,7 @@
 
 (function(){
 	document.addEventListener("DOMContentLoaded",restoreOptions);
+	document.addEventListener("DOMContentLoaded",restoreShortcuts);
 	document.getElementById("optionsForm").addEventListener("change",saveOptions);
 	document.getElementById("addRow").addEventListener("click",addRow);
 	document.getElementById("addButton").addEventListener("click",addButton);
@@ -88,30 +89,23 @@ function restoreOptions(){
 						item.textContent=1;
 						item.title=i18n("currentSpeed");
 						break;
-					case "playpause":
-						item=document.createElement("button");
-						item.id=e;
-						item.title=i18n("playPause");
-						break;
 					case "customize":
 						item=document.createElement("button");
 						item.id=e;
 						item.textContent=i18n("customize");
 						break;
+					case "playpause":
 					case "rewind":
-						item=document.createElement("button");
-						item.id=e;
-						item.title=i18n("rewind");
-						break;
 					case "fastforward":
+					case "loop":
+					case "mute":
 						item=document.createElement("button");
 						item.id=e;
-						item.title=i18n("fastforward");
+						item.title=i18n(e);
 						break;
 					default:
 						item=document.createElement("button");
 						item.textContent=e;
-						break;
 				}
 				rowElm.appendChild(item);
 			});
@@ -141,7 +135,7 @@ function restoreOptions(){
 			});
 		});
 	}).then(()=>{
-		let itemsId=["plus","minus","open","range","current","playpause","customize","rewind","fastforward"];
+		let itemsId=["plus","minus","open","range","current","playpause","customize","rewind","fastforward","loop","mute"];
 		itemsId.forEach(id=>{
 			if(!document.getElementById(id))restoreItem(id);
 		});
@@ -193,6 +187,8 @@ function deleteRow(e){
 	if(items.customize){restoreItem("customize");}
 	if(items.rewind){restoreItem("rewind");}
 	if(items.fastforward){restoreItem("fastforward");}
+	if(items.loop){restoreItem("loop");}
+	if(items.mute){restoreItem("mute");}
 	e.target.parentElement.remove();
 	savePopup();
 }
@@ -239,26 +235,15 @@ function restoreItem(id){
 			item.textContent="1";
 			item.title=i18n("currentSpeed");
 			break;
-		case "playpause":
-			item=document.createElement("button");
-			item.id=id;
-			item.title=i18n("playPause");
-			break;
 		case "customize":
 			item=document.createElement("button");
 			item.id=id;
-			item.textContent=i18n("Customize");
+			item.textContent=i18n("customize");
 			break;
-		case "rewind":
+		default:
 			item=document.createElement("button");
 			item.id=id;
-			item.title=i18n("rewind");
-			break;
-		case "fastforward":
-			item=document.createElement("button");
-			item.id=id;
-			item.title=i18n("fastforward");
-			break;
+			item.title=i18n(id);
 	}
 	palette.appendChild(item);	
 }
@@ -282,6 +267,36 @@ function savePopup(){
 	});
 }
 
+function restoreShortcuts(){
+	let container=document.getElementById("shortcutsContainer");
+	browser.commands.getAll().then(commands=>{
+		commands.forEach(command=>{
+			let label=document.createElement("label");
+				label.textContent=command.description;
+			let input=document.createElement("input");
+				input.type="text";
+				input.disabled=true;
+				input.value=command.shortcut;
+				input.placeholder=i18n("noShortcut");
+			let reset=document.createElement("input");
+				if(command.shortcut){
+					reset.type="image";
+					reset.className="delete";
+					reset.src="icons/delete.svg";
+					reset.title=i18n("deleteShortcut");
+					reset.addEventListener("click",()=>{
+						browser.commands.update({name:command.name,shortcut:""});
+						input.value="";
+						reset.className="hidden";
+					});
+				}else{
+					reset.className="hidden";
+				}
+			container.append(label,input,reset);
+		});
+	});
+}
+
 function translate(){
 	document.getElementById("title").textContent=i18n("options");
 	document.getElementById("main").textContent=i18n("main");
@@ -298,6 +313,8 @@ function translate(){
 	document.getElementById("header").textContent=i18n("customizeTitle");
 	document.getElementById("addRow").textContent=i18n("addRow");
 	document.getElementById("addButton").textContent=i18n("addButton");
+	document.getElementById("shortcuts").textContent=i18n("shortcuts");
+	document.getElementById("howShortcut").textContent=i18n("howShortcut");
 }
 
 function i18n(e,s1){

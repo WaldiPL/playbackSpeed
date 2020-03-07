@@ -12,7 +12,11 @@ function handleInstalled(details){
 					stepRange:0.1,
 					stepButton:0.25,
 					popup:[["range","current"],["minus","plus"],[1,1.25,1.5,1.75,2],["playpause","open"],["customize"]]
+				}).then(()=>{
+					browser.runtime.openOptionsPage();
 				});
+			}else{
+				browser.runtime.openOptionsPage();
 			}
 		});
 	}
@@ -20,27 +24,18 @@ function handleInstalled(details){
 
 browser.commands.onCommand.addListener(command=>{
 	switch(command){
-		case "ratePlus":
-			control("plus");
-			break;
-		case "rateMinus":
-			control("minus");
-			break;
 		case "rateDefault":
 			control(1);
 			break;
-		case "rewind":
-			control("rewind");
-			break;
-		case "fastforward":
-			control("fastforward");
-			break;
+		default:
+			control(command);
 	}
 });
 
 function control(e){
 	browser.tabs.executeScript(null,{
 		allFrames: true,
+		matchAboutBlank: true,
 		file: "/insert.js",
 		runAt: "document_end"
 	}).then(()=>{
@@ -48,6 +43,7 @@ function control(e){
 			let step=(e==="rewind"||e==="fastforward")?db.stepFast:db.stepButton;
 			browser.tabs.executeScript(null,{
 				allFrames: true,
+				matchAboutBlank: true,
 				code: `control("${e}",${step});`,
 				runAt: "document_end"
 			});

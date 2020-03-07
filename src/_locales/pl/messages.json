@@ -83,5 +83,26 @@
   },
   "fastforward": {
     "message": "Do przodu"
+  },
+  "loop": {
+    "message": "Przełącz odtwarzanie w pętli"
+  },
+  "mute": {
+    "message": "Przełącz wyciszenie"
+  },
+  "openPopup": {
+    "message": "Otwórz wyskakujące okienko"
+  },
+  "shortcuts": {
+    "message": "Skróty klawiaturowe"
+  },
+  "noShortcut": {
+    "message": "Brak skrótu"
+  },
+  "deleteShortcut": {
+    "message": "Usuń skrót"
+  },
+  "howShortcut": {
+    "message": "Jak zmienić skróty klawiaturowe?"
   }
 }

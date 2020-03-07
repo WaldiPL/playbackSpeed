@@ -83,5 +83,26 @@
   },
   "fastforward": {
     "message": "Fast forward"
+  },
+  "loop": {
+    "message": "Toggle loop"
+  },
+  "mute": {
+    "message": "Mute / Unmute"
+  },
+  "openPopup": {
+    "message": "Open a popup"
+  },
+  "shortcuts": {
+    "message": "Keyboard shortcuts"
+  },
+  "noShortcut": {
+    "message": "No shortcut"
+  },
+  "deleteShortcut": {
+    "message": "Delete shortcut"
+  },
+  "howShortcut": {
+    "message": "How to change keyboard shortcuts?"
   }
 }
