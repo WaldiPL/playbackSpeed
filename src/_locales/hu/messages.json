@@ -1,0 +1,109 @@
+{
+  "extensionName": {
+    "message": "Lejátszási sebesség"
+  },
+  "extensionDescription": {
+    "message": "A videó lejátszási sebességének szabályozása."
+  },
+  "newTab": {
+    "message": "Videó új lapon",
+    "comment": "Normal translation is too long: 'Videó megnyitása új lapon'."
+  },
+  "noVideo": {
+    "message": "Nincs videó ezen az oldalon"
+  },
+  "error": {
+    "message": "Ezt a videót nem lehet megnyitni"
+  },
+  
+  "options": {
+    "message": "Beállítások"
+  },
+  "main": {
+    "message": "Alap"
+  },
+  "stepButtons": {
+    "message": "A -/+ gombok lépésközének értéke"
+  },
+  "stepFast": {
+    "message": "A tekerés gombok lépésközének értéke [mp]"
+  },
+  "theme": {
+    "message": "Téma"
+  },
+  "light": {
+    "message": "Világos"
+  },
+  "dark": {
+    "message": "Sötét"
+  },
+  "slider": {
+    "message": "Csúszka"
+  },
+  "minSpeed": {
+    "message": "Minimum sebesség"
+  },
+  "maxSpeed": {
+    "message": "Maximum sebesség"
+  },
+  "stepSlider": {
+    "message": "Lépésköz értéke"
+  },
+  "customizeTitle": {
+    "message": "A felugró ablak testreszabásához húzzuk rá/le az elemeket."
+  },
+  "deleteRow": {
+    "message": "Sor törlése"
+  },
+  "addRow": {
+    "message": "Új sor hozzáadása"
+  },
+  "increaseSpeed": {
+    "message": "Sebesség növelése"
+  },
+  "decreaseSpeed": {
+    "message": "Sebesség csökkentése"
+  },
+  "resetSpeed": {
+    "message": "Sebesség visszaállítása"
+  },
+  "currentSpeed": {
+    "message": "Jelenlegi sebesség"
+  },
+  "playPause": {
+    "message": "Lejátszás / Szünet"
+  },
+  "customize": {
+    "message": "Testreszabás…"
+  },
+  "addButton": {
+    "message": "Új gomb létrehozása ezzel az értékkel:"
+  },
+  "rewind": {
+    "message": "Visszatekerés"
+  },
+  "fastforward": {
+    "message": "Előretekerés"
+  },
+  "loop": {
+    "message": "Ismétlés"
+  },
+  "mute": {
+    "message": "Némítás / Némítás feloldása"
+  },
+  "openPopup": {
+    "message": "Felugró ablak megnyitása"
+  },
+  "shortcuts": {
+    "message": "Gyorsbillentyűk"
+  },
+  "noShortcut": {
+    "message": "Nincs gyorsbillentyű"
+  },
+  "deleteShortcut": {
+    "message": "Gyorsbillentyű törlése"
+  },
+  "howShortcut": {
+    "message": "Hogyan lehet megváltoztatni a gyorsbillentyűket?"
+  }
+}
