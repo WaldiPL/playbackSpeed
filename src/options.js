@@ -285,7 +285,14 @@ function restoreShortcuts(){
 					reset.src="icons/delete.svg";
 					reset.title=i18n("deleteShortcut");
 					reset.addEventListener("click",()=>{
-						browser.commands.update({name:command.name,shortcut:""});
+						browser.runtime.getBrowserInfo().then(e=>{
+							const version=parseInt(e.version);
+							if(version>=74){
+								browser.commands.update({name:command.name,shortcut:""});
+							}else{
+								browser.commands.reset(command.name);
+							}
+						})
 						input.value="";
 						reset.className="hidden";
 					});
