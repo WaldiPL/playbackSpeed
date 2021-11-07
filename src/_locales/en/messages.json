@@ -36,6 +36,9 @@
   "dark": {
     "message": "Dark"
   },
+  "autoTheme": {
+    "message": "Automatic"
+  },
   "slider": {
     "message": "Slider"
   },

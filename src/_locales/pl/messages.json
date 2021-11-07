@@ -36,6 +36,9 @@
   "dark": {
     "message": "Ciemny"
   },
+  "autoTheme": {
+    "message": "Automatyczny"
+  },
   "slider": {
     "message": "Suwak"
   },
@@ -70,7 +73,7 @@
     "message": "Aktualna szybkość"
   },
   "playPause": {
-    "message": "Odtwarzaj / Wstrzymaj"
+    "message": "Odtwórz / Wstrzymaj"
   },
   "customize": {
     "message": "Dostosuj…"

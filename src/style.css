@@ -1,33 +1,60 @@
-:not(.dark):root{
+.light,
+.light:root{
 	--background-color:#fff;
-	--text-color:#0c0c0d;
-	--button-background:rgba(12, 12, 13, 0.1);
-	--button-hover:rgba(12, 12, 13, 0.2);
-	--button-active:rgba(12, 12, 13, 0.3);
+	--text-color:#000;
+	--button-background:rgba(207,207,216,.33);
+	--button-hover:rgba(207,207,216,.66);
+	--button-active:rgba(207,207,216,1);
 	--error-background:#d70022;
 	--error-color:#fff;
-	--icon-playpause:url("icons/playpause.svg#l");
-	--icon-fastforward:url("icons/fastforward.svg#l");
-	--icon-rewind:url("icons/rewind.svg#l");
-	--icon-loop:url("icons/loop.svg#l");
-	--icon-mute:url("icons/mute.svg#l");
+	--focus-color:#0061e0;
 }
 
+.dark,
 .dark:root{
-	--background-color:#4a4a4f;
-	--text-color:#f9f9fa;
-	--button-background:rgba(249, 249, 250, 0.1);
-	--button-hover:rgba(249, 249, 250, 0.2);
-	--button-active:rgba(249, 249, 250, 0.3);
+	--background-color:#42414d;
+	--text-color:#fbfbfe;
+	--button-background:rgba(251,251,254,.05);
+	--button-hover:rgba(251,251,254,.12);
+	--button-active:rgba(251,251,254,.25);
 	--error-background:#d70022;
 	--error-color:#fff;
-	--icon-playpause:url("icons/playpause.svg#d");
-	--icon-fastforward:url("icons/fastforward.svg#d");
-	--icon-rewind:url("icons/rewind.svg#d");
-	--icon-loop:url("icons/loop.svg#d");
-	--icon-mute:url("icons/mute.svg#d");
+	--focus-color:#00ddff;
 }
 
+@media (prefers-color-scheme: light) {
+	.auto,
+	.auto:root{
+		--button-background:rgba(207,207,216,.33);
+		--button-hover:rgba(207,207,216,.66);
+		--button-active:rgba(207,207,216,1);
+		--error-background:#d70022;
+		--error-color:#fff;
+		--focus-color:#0061e0;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	.auto,
+	.auto:root{
+		--button-background:rgba(251,251,254,.05);
+		--button-hover:rgba(251,251,254,.12);
+		--button-active:rgba(251,251,254,.25);
+		--error-background:#d70022;
+		--error-color:#fff;
+		--focus-color:#00ddff;
+	}
+}
+
+@font-face {
+      font-family:"playback";
+      src:url('icons/playback.ttf');
+}
+
+#playpause,#rewind,#fastforward,#mute,#loop,#customize,#customizeNo,.delete{
+	font-family:"playback";
+	font-size:16px;
+}
 
 body{
 	background: var(--background-color);
@@ -36,9 +63,9 @@ body{
 	cursor: default;
 	font: caption;
 	margin: 0;
-	padding: 4px;
+	padding: 6px;
 	-moz-user-select: none;
-	width:220px;
+	width:224px;
 }
 
 button{
@@ -47,23 +74,31 @@ button{
 	background-color:var(--button-background);
 	color:var(--text-color);
 	border: none;
-	border-radius:2px;
+	border-radius:4px;
 	box-shadow: 0 0 0 0 transparent;
 	font: caption;
 	height: 28px;
-	outline: 0 !important;
+	outline: 0;
 	padding: 0 8px 0;
 	transition-duration: 150ms;
 	transition-property: background-color;
 	margin:2px;
 }
 
+#loop.active:hover,
 button:hover{
 	background-color:var(--button-hover);
 }
 
+#loop.active,
 button:hover:active{
 	background-color:var(--button-active);
+}
+
+:is(button,input[type="image"],a):focus-visible{
+	box-shadow: none;
+	outline: 2px solid var(--focus-color);
+	outline-offset: 2px;
 }
 
 .flexrow{
@@ -107,6 +142,7 @@ button:hover:active{
 	box-sizing:border-box;
 	display:inline-block;
 	vertical-align:bottom;
+	color:var(--text-color);
 }
 
 #range {
@@ -115,55 +151,26 @@ button:hover:active{
 	vertical-align:bottom;
 }
 
-#noVideo{
-	text-align:center;
-	padding:6px;
+#noVideo:not([hidden]){
+	display:grid;
+	grid-template-columns:auto 32px;
+	align-items:center;
+	justify-items:center;
+}
+
+#customizeNo{
+	padding:0 6px;
 }
 
 #error{
 	background:var(--error-background);
 	color:var(--error-color);
-	border-radius:2px;
+	border-radius:4px;
 	text-align:center;
 	padding:6px;
-	margin:2px;
+	margin:8px 2px 2px 2px;
 }
 
-#playpause{
-	background-image:var(--icon-playpause);
-	background-repeat:no-repeat;
-	background-position:center;
-	vertical-align:bottom;
-}
-
-#rewind{
-	background-image:var(--icon-rewind);
-	background-repeat:no-repeat;
-	background-position:center;
-	vertical-align:bottom;
-}
-
-#fastforward{
-	background-image:var(--icon-fastforward);
-	background-repeat:no-repeat;
-	background-position:center;
-	vertical-align:bottom;
-}
-
-#loop{
-	background-image:var(--icon-loop);
-	background-repeat:no-repeat;
-	background-position:center;
-	vertical-align:bottom;
-}
-
-#mute{
-	background-image:var(--icon-mute);
-	background-repeat:no-repeat;
-	background-position:center;
-	vertical-align:bottom;
-}
-
-#isVideo>#customize{
-	width:208px;
+*:focus{
+	outline:none;
 }

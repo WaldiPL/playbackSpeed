@@ -37,6 +37,9 @@
   "dark": {
     "message": "Sötét"
   },
+  "autoTheme": {
+    "message": "Automatikus"
+  },
   "slider": {
     "message": "Csúszka"
   },

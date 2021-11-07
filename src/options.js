@@ -6,6 +6,7 @@
 	document.getElementById("optionsForm").addEventListener("change",saveOptions);
 	document.getElementById("addRow").addEventListener("click",addRow);
 	document.getElementById("addButton").addEventListener("click",addButton);
+	document.getElementById("theme").addEventListener("change",e=>{document.getElementById("popupPreview").className=e.target.value;});
 	translate();
 })();
 
@@ -46,14 +47,15 @@ function restoreOptions(){
 		document.getElementById("stepButton").value=db.stepButton;
 		document.getElementById("stepFast").value=db.stepFast;
 		document.getElementById("theme").value=db.theme;
+		document.getElementById("popupPreview").className=db.theme;
 		
 		db.popup.forEach(row=>{
 			let rowElm=document.createElement("div");
 				rowElm.className="flexrow";
 			let del=document.createElement("input");
-				del.type="image";
+				del.type="button";
 				del.className="delete";
-				del.src="icons/delete.svg";
+				del.value='\uf808';
 				del.title=i18n("deleteRow");
 				del.addEventListener("click",deleteRow);
 			rowElm.appendChild(del);
@@ -92,15 +94,37 @@ function restoreOptions(){
 					case "customize":
 						item=document.createElement("button");
 						item.id=e;
-						item.textContent=i18n("customize");
+						item.textContent='\uf807';
+						item.title=i18n("customize");
 						break;
 					case "playpause":
+						item=document.createElement("button");
+						item.id=e;
+						item.textContent='\uf800';
+						item.title=i18n(e);
+						break;
 					case "rewind":
+						item=document.createElement("button");
+						item.id=e;
+						item.textContent='\uf802';
+						item.title=i18n(e);
+						break;
 					case "fastforward":
+						item=document.createElement("button");
+						item.id=e;
+						item.textContent='\uf803';
+						item.title=i18n(e);
+						break;
 					case "loop":
+						item=document.createElement("button");
+						item.id=e;
+						item.textContent='\uf806';
+						item.title=i18n(e);
+						break;
 					case "mute":
 						item=document.createElement("button");
 						item.id=e;
+						item.textContent='\uf804';
 						item.title=i18n(e);
 						break;
 					default:
@@ -134,6 +158,18 @@ function restoreOptions(){
 			  update:savePopup
 			});
 		});
+
+		browser.theme.getCurrent().then(theme=>{
+			let autoStyle=document.createElement("style");
+			let popup_border=theme.colors.popup_border||"#d0d1d1";
+			autoStyle.textContent=`
+			.auto{
+				--background-color:${theme.colors.popup};
+				--text-color:${theme.colors.popup_text};
+				--popup-border:${popup_border};
+			}`;
+			document.body.appendChild(autoStyle);
+		});
 	}).then(()=>{
 		let itemsId=["plus","minus","open","range","current","playpause","customize","rewind","fastforward","loop","mute"];
 		itemsId.forEach(id=>{
@@ -151,10 +187,10 @@ function addRow(){
 	let rowElm=document.createElement("div");
 		rowElm.className="flexrow";
 	let del=document.createElement("input");
-		del.type="image";
+		del.type="button";
+		del.value='\uf808';
 		del.title=i18n("deleteRow");
 		del.className="delete";
-		del.src="icons/delete.svg";
 		del.addEventListener("click",deleteRow);
 		rowElm.appendChild(del);
 	let container=document.getElementById("popupPreview");
@@ -238,7 +274,38 @@ function restoreItem(id){
 		case "customize":
 			item=document.createElement("button");
 			item.id=id;
-			item.textContent=i18n("customize");
+			item.textContent='\uf807';
+			item.title=i18n("customize");
+			break;
+		case "playpause":
+			item=document.createElement("button");
+			item.id=id;
+			item.textContent='\uf800';
+			item.title=i18n("playpause");
+			break;
+		case "rewind":
+			item=document.createElement("button");
+			item.id=id;
+			item.textContent='\uf802';
+			item.title=i18n("rewind");
+			break;
+		case "fastforward":
+			item=document.createElement("button");
+			item.id=id;
+			item.textContent='\uf803';
+			item.title=i18n("fastforward");
+			break;
+		case "loop":
+			item=document.createElement("button");
+			item.id=id;
+			item.textContent='\uf806';
+			item.title=i18n("loop");
+			break;
+		case "mute":
+			item=document.createElement("button");
+			item.id=id;
+			item.textContent='\uf804';
+			item.title=i18n("mute");
 			break;
 		default:
 			item=document.createElement("button");
@@ -278,11 +345,10 @@ function restoreShortcuts(){
 				input.disabled=true;
 				input.value=command.shortcut;
 				input.placeholder=i18n("noShortcut");
-			let reset=document.createElement("input");
+			let reset=document.createElement("button");
 				if(command.shortcut){
-					reset.type="image";
 					reset.className="delete";
-					reset.src="icons/delete.svg";
+					reset.textContent='\uf808';
 					reset.title=i18n("deleteShortcut");
 					reset.addEventListener("click",()=>{
 						browser.runtime.getBrowserInfo().then(e=>{
@@ -313,6 +379,7 @@ function translate(){
 	let themeSelect=document.getElementById("theme").options;
 		themeSelect[0].text=i18n("light");
 		themeSelect[1].text=i18n("dark");
+		themeSelect[2].text=i18n("autoTheme");
 	document.getElementById("sliderTitle").textContent=i18n("slider");
 	document.getElementById("minRangeLabel").textContent=i18n("minSpeed");
 	document.getElementById("maxRangeLabel").textContent=i18n("maxSpeed");

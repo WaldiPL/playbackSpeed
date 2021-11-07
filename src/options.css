@@ -1,3 +1,61 @@
+.light{
+	--popup-border:#d0d1d1;
+}
+
+.dark{
+	--popup-border:#52525e;
+}
+
+@media (prefers-color-scheme: dark) {
+	body{
+		background-color:#23222b !important;
+		color:#fbfbfe !important;
+	}
+	.card{
+		background-color:#2b2a33 !important;
+		border-color:#676670 !important;
+	}
+	#rightSide button,
+	#addRow{
+		background-color:#52525e54 !important;
+		color:#fbfbfe !important;
+	}
+	#rightSide button:hover,
+	#addRow:hover{
+		background-color:#52525e !important;
+	}
+	#rightSide button:active,
+	#addRow:active{
+		background-color:#5b5b66 !important;
+	}
+	input[type="text"],
+	input[type="number"],
+	select{
+		background:#23222b;
+		border-color:#7c7b82 !important;
+		color:#fbfbfe !important;
+	}
+	#sliderTitle{
+		border-color:#676670 !important;
+	}
+	#palette{
+		border-color:#676670 !important;
+		background:#23222b !important;
+	}
+	a{
+		color:#00ddff !important;
+	}
+	:is(input[type="text"],input[type="number"],select,a,button,.delete):focus-visible{
+		outline: 2px solid #00ddff !important;
+	}
+	.delete:hover{
+	background-color:#52525e !important;
+	}
+	.delete:hover:active{
+		background-color:#5b5b66 !important;
+	}
+}
+
 body{
 	width:100% !important;
 	-moz-user-select:unset !important;
@@ -21,7 +79,7 @@ input[type="text"],
 input[type="number"],
 select{
 	border:1px solid #9e9e9e;
-	border-radius:2px;
+	border-radius:4px;
 	height:28px;
 	width:140px;
 	padding-left:8px;
@@ -34,11 +92,10 @@ select:hover{
 	border-color:#858585;
 }
 
-input[type="text"]:focus,
-input[type="number"]:focus,
-select:focus{
-	border-color:#0a84ff;
-	box-shadow:0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
+:is(input[type="text"],input[type="number"],select,input.delete):focus-visible{
+	box-shadow: none;
+	outline: 2px solid #0061e0;
+	outline-offset: 0;
 }
 
 h2{
@@ -49,6 +106,19 @@ h2{
 
 h3{
 	margin:10px 0;
+}
+
+#rightSide button,
+#addRow{
+	background-color:rgba(207,207,216,.33);
+}
+#rightSide button:hover,
+#addRow:hover{
+	background-color:rgba(207,207,216,.66);
+}
+#rightSide button:active,
+#addRow:active{
+	background-color:rgba(207,207,216,1);
 }
 
 #sliderTitle{
@@ -80,11 +150,6 @@ h3{
 	border:1px solid #0c0c0d1a;
 	border-radius: 4px;
 	box-shadow:#0c0c0d1a 0px 1px 4px 0px;
-	transition: box-shadow 150ms;
-}
-
-.card:hover{
-	box-shadow:#0c0c0d1a 0px 1px 4px 0px, #d7d7db 0px 0px 0px 5px;
 }
 
 .card+.card{
@@ -105,27 +170,24 @@ h3{
 
 #popupPreview{
 	width:224px;
-	padding:4px;
+	padding:6px;
 	margin:2px 0 0 32px;
-	border:1px solid #d0d1d1;
+	border:1px solid var(--popup-border);
+	border-radius:8px;
 	box-shadow:0 2px 8px rgba(12, 12, 13, 0.1);
-	background:#fff;
+	background:var(--background-color);
 }
 
-#popupPreview::before{
-	content:"";
-	background-image:url("icons/arrow.svg");
-	height: 10px;
-	width: 20px;
-	display: block;
-	position: relative;
-	top: -14px;
-	left: 2px;
-	margin-bottom:-10px;
+#popupPreview.light button:focus-visible{
+	outline: 2px solid #0061e0 !important;
+}
+
+#popupPreview.dark button:focus-visible{
+	outline: 2px solid #00ddff !important;
 }
 
 .flexrow{
-	background-image: url("icons/drag.svg");
+	background-image:url("icons/drag.svg");
 	background-repeat:no-repeat;
 	background-position:right;
 	padding-right:12px;
@@ -164,17 +226,20 @@ h3{
 	left:-40px;
 	margin:2px -30px 2px 2px;
 	cursor:default;
-	border-radius:2px;
+	border:none;
+	border-radius:4px;
 	transition-duration: 150ms;
 	transition-property: background-color;
+	color:inherit;
+	background:transparent;
 }
 
 .delete:hover{
-	background-color:#c9c9ca;
+	background-color:rgba(207,207,216,.66);
 }
 
 .delete:hover:active{
-	background-color:#b1b1b1;
+	background-color:rgba(207,207,216,1);
 }
 
 .shortcutsTab .delete{
@@ -188,6 +253,7 @@ h3{
 
 #buttonValue{
 	width:65px;
+	margin-left:4px;
 }
 
 a{
